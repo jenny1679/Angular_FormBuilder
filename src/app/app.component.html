@@ -1,0 +1,56 @@
+<h1>FormBuilder</h1>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName">
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName">
+  </label>
+  <label>
+    Age:
+    <input type="text" formControlName="age">
+  </label>
+  <label>
+    Email:
+    <input type="text" formControlName="email">
+  </label>
+
+  <div formGroupName="address">
+    <h2>Address</h2>
+    <label>
+      Address 1:
+      <input type="text" formControlName="address1">
+    </label>
+    <label>
+      Address 2:
+      <input type="text" formControlName="address2">
+    </label>
+    <label>
+      City:
+      <input type="text" formControlName="city">
+    </label>
+    <label>
+      Zip:
+      <input type="text" formControlName="zip">
+    </label>
+  </div>
+
+  <h1>新增動態Controls</h1>
+  <div formArrayName="mobiles">
+    <h3>Enter Mobile Number</h3>
+    <div *ngFor="let mob of mobiles.controls; let i =index">
+      <label>Mobile {{i+1}}</label>
+      <input type="text" [formControlName]="i">
+    </div>
+    <div><button (click)="addNewMobile()">Add New Mobile</button></div>
+  </div>
+
+
+
+  <!-- <button type="submit" [disabled]="!userForm.valid">Submit</button>
+  <div><button (click)="updatePartially()">Update Partially</button></div> -->
+</form>
